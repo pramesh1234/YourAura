@@ -66,7 +66,7 @@ submitRatingButton.addEventListener('click', () => {
   }
 
   // Update ratings
-  database.ref(`ratings/${raterEmail}/${ratedUserEmail}`).set(rating)
+  ref(database,`ratings/${raterEmail}/${ratedUserEmail}`).set(rating)
     .then(() => {
       // Update user's total score and rating ratio
       updateUserScore(ratedUserEmail, rating);
@@ -99,7 +99,7 @@ function updateUserScore(userEmail, rating) {
 
 // Load User Data
 function loadUserData(userEmail) {
-  const userRef = database.ref(`users/${userEmail}`);
+  const userRef = ref(database,`users/${userEmail}`);
   userRef.on('value', (snapshot) => {
     const user = snapshot.val();
     if (user) {
