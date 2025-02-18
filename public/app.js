@@ -79,7 +79,7 @@ submitRatingButton.addEventListener('click', () => {
 
 // Update User's Total Score and Rating Ratio
 function updateUserScore(userEmail, rating) {
-  const userRef = database.ref(`users/${userEmail}`);
+  const userRef = ref(database, 'users/' + userEmail);
   userRef.transaction((user) => {
     if (user) {
       user.totalScore = (user.totalScore || 0) + rating;
